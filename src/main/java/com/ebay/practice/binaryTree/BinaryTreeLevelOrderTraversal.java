@@ -49,34 +49,28 @@ public class BinaryTreeLevelOrderTraversal {
         node11.setLeft(node6);
         node6.setRight(node8);
 
+        //               1
+        //              / \
+        //             2   11
+        //            / \  / \
+        //           3   4 6
+        //         / \  /\ /\
+        //           5 10    8
+        //          /\ /\   / \
+        //         7    12
+        //        /\    /\
+        //          9
 
 
+        BinaryTreeLevelOrderTraversal tras = new BinaryTreeLevelOrderTraversal();
+        System.out.println(tras.improvedLevelOrderTraversalRecur(node1));
          //System.out.println(levelorderTraversalRecursion(node1));
         // list.clear();
-         System.out.println(levelorderTraversalIterative1(node1));
+         //System.out.println(levelorderTraversalIterative1(node1));
         //list.clear();
         // System.out.println(preorderTraversalIterative2(node1));
 
     }
-
-    /*//recursive way using DFS
-    public static List<Integer> levelorderTraversalRecursion(BinaryTreeNode root) {
-        if(root !=null){
-            preorderhelper(root);
-        }
-
-        return list;
-    }
-
-    public static void preorderhelper(BinaryTreeNode node){
-
-        list.add(node.getValue());
-        if(node.getLeft()!=null)
-            preorderhelper(node.getLeft());
-
-        if(node.getRight()!=null)
-            preorderhelper(node.getRight());
-    }*/
 
     // 1) iterative way of binary tree levelorder traversal
 
@@ -101,7 +95,86 @@ public class BinaryTreeLevelOrderTraversal {
         }
         return res;
 
+    }
+//print only elements in level Order traversal using iterative way.
+    public void printLevelOrder(BinaryTreeNode root)
+    {
+        Queue<BinaryTreeNode> queue = new LinkedList<BinaryTreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty())
+        {
+
+            /* poll() removes the present head.
+            For more information on poll() visit
+            http://www.tutorialspoint.com/java/util/linkedlist_poll.htm */
+            BinaryTreeNode tempNode = queue.poll();
+            System.out.print(tempNode.getValue() + " ");
+
+            /*Enqueue left child */
+            if (tempNode.getLeft() != null) {
+                queue.add(tempNode.getLeft());
+            }
+
+            /*Enqueue right child */
+            if (tempNode.getRight() != null) {
+                queue.add(tempNode.getRight());
+            }
+        }
+    }
+
+    //recursively
+
+    public void printLevelOrderRecur(BinaryTreeNode root){
+
+        if(root ==null)
+            return ;
+        int h = depth(root);
+        for(int i=1;i<=h;i++){
+            printLevelOrderRecur(root,i);
+        }
+    }
+
+    public void printLevelOrderRecur(BinaryTreeNode root, int i){
+        if(root ==null){
+            return;
+        }
+        if(i==1){
+            System.out.println(root.getValue());
+
+        }
+        printLevelOrderRecur(root.getLeft(),i-1);
+        printLevelOrderRecur(root.getRight(),i-1);
 
     }
+    public  int depth(BinaryTreeNode node) {
+        if (node == null) return 0;
+        int L = depth(node.getLeft());
+        int R = depth(node.getRight());
+        return Math.max(L, R) + 1;
+    }
+   // improved level Order traversal using recursion solution.
+    public List<List<Integer>> improvedLevelOrderTraversalRecur(BinaryTreeNode root){
+
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        if(root==null)
+            return res;
+        improvedLevelOrderTraversalRecur(root,1,res);
+        return res;
+    }
+    public void improvedLevelOrderTraversalRecur(BinaryTreeNode root, int level, List<List<Integer>> res){
+
+        if(root == null){
+            return;
+        }
+        if(res.size()<level){
+            List<Integer> list = new ArrayList<>();
+            res.add(list);
+        }
+        res.get(level-1).add(root.getValue());
+        improvedLevelOrderTraversalRecur(root.getLeft(),level+1,res);
+        improvedLevelOrderTraversalRecur(root.getRight(),level+1,res);
+    }
+
+
 
 }

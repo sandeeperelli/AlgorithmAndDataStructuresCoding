@@ -8,7 +8,7 @@ public class LongestSubStringWithOutRepeatingCharacters {
 
     public static void main(String[] args) {
 
-        System.out.println(lengthOfLongestSubstring("seandeep"));
+        System.out.println(longestUniqueSubsttr("seandeep"));
 
     }
 
