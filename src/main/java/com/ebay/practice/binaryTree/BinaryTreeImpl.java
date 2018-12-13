@@ -1,18 +1,9 @@
 package com.ebay.practice.binaryTree;
 
+import com.ebay.practice.model.TreeNode;
+
 public class BinaryTreeImpl {
 
-
-    // Definition for a binary tree node.
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     int ans;
 //diameter of a binaryTree is diameter for a node is the sums of left depth-1 and right depth-1

@@ -63,7 +63,7 @@ public class BinaryTreeLevelOrderTraversal {
 
 
         BinaryTreeLevelOrderTraversal tras = new BinaryTreeLevelOrderTraversal();
-        System.out.println(tras.improvedLevelOrderTraversalRecur(node1));
+        System.out.println(tras.returnRightViewOfBinaryTree(node1));
          //System.out.println(levelorderTraversalRecursion(node1));
         // list.clear();
          //System.out.println(levelorderTraversalIterative1(node1));
@@ -153,6 +153,7 @@ public class BinaryTreeLevelOrderTraversal {
         return Math.max(L, R) + 1;
     }
    // improved level Order traversal using recursion solution.
+
     public List<List<Integer>> improvedLevelOrderTraversalRecur(BinaryTreeNode root){
 
         List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -175,6 +176,28 @@ public class BinaryTreeLevelOrderTraversal {
         improvedLevelOrderTraversalRecur(root.getRight(),level+1,res);
     }
 
+   //right view of a binary tree using recursive way.
+    public Collection<Integer> returnRightViewOfBinaryTree(BinaryTreeNode node){
+
+        List<Integer> res = new ArrayList<>();
+        Map<Integer,Integer> map = new HashMap<>();
+        if(node == null)
+            return res;
+        returnRightViewOfBinaryTree(node,1,map);
+        return map.values();
+
+    }
+
+    private void returnRightViewOfBinaryTree(BinaryTreeNode root, int i, Map<Integer, Integer> map) {
+        if(root == null)
+            return;
+        /*if(map.size()<i){
+            map.put(i,root.getValue());
+        }*/
+        map.put(i,root.getValue());
+        returnRightViewOfBinaryTree(root.getLeft(),i+1,map);
+        returnRightViewOfBinaryTree(root.getRight(),i+1,map);
+    }
 
 
 }

@@ -1,6 +1,8 @@
 package com.ebay.practice.binaryTree;
 
 
+import com.ebay.practice.model.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -30,15 +32,4 @@ class FlattenBTTOLinkedList {
     }
 
 
-}
-
-// Definition for a binary tree node.
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
 }
