@@ -1,8 +1,7 @@
 package com.ebay.practice.graph;
 
 // Java program to print DFS traversal from a given given graph
-import java.io.*;
-        import java.util.*;
+import java.util.*;
 
 // This class represents a directed graph using adjacency list
 // representation
